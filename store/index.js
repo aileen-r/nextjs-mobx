@@ -6,24 +6,34 @@ const messages = [
   'Is it Friday yet? 🍷',
 ];
 
-// let store = null;
+let store = null;
 
 class Store {
   @observable helloMessage = '';
 
-  constructor() {
-    this.helloMessage = messages[Math.floor(Math.random() * (messages.length - 1))];
+  constructor(isServer, message) {
+    // set message or generate message if no message is there yet)
+    this.helloMessage = message
+      ? message
+      : messages[Math.floor(Math.random() * (messages.length))];
   }
 
   @action start = () => {
     this.timer = setInterval(() => {
-      this.helloMessage = messages[Math.floor(Math.random() * (messages.length - 1))];
+      this.helloMessage = messages[Math.floor(Math.random() * (messages.length))];
     }, 10000);
   };
 
   stop = () => clearInterval(this.timer);
 }
 
-export default function initStore() {
-  return new Store();
+export default function initStore(isServer, message) {
+  if (isServer && typeof window === 'undefined') {
+    return new Store(isServer, message);
+  } else {
+    if (store === null) {
+      store = new Store(isServer, message);
+    }
+    return store;
+  }
 }
