@@ -1,17 +1,14 @@
-export default function HomePage() {
-    return (
-        <h1>Hello World 👋</h1>
-    )
-//   constructor(props) {
-//     super(props);
-//     this.store = initBaseStore();
-//   }
+import { Provider } from 'mobx-react';
+import initStore from '../store';
+import FriendlyHello from '../components/FriendlyHello';
 
-//   render() {
-//     return (
-//       <Provider BaseStore={this.store}>
-//         <FriendlyHello />
-//       </Provider>
-//     );
-//   }
-}
+const HomePage = () => {
+  const store = initStore();
+  return (
+    <Provider BaseStore={store}>
+      <FriendlyHello />
+    </Provider>
+  );
+};
+
+export default HomePage;
