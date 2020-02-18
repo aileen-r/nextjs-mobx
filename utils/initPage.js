@@ -1,11 +1,13 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'mobx-react';
 import { initAuthStore, initBaseStore } from '~/store';
 import withLayout from './withLayout';
 
 const initPage = Page => {
   const PageComponent = ({ helloMessage, isServer }) => {
-    const baseStore = initBaseStore(isServer, helloMessage)
-    const authStore = initAuthStore(isServer)
+    const baseStore = initBaseStore(isServer, helloMessage);
+    const authStore = initAuthStore(isServer);
     const Layout = withLayout(Page);
     return (
       <Provider BaseStore={baseStore} AuthStore={authStore}>
@@ -14,6 +16,11 @@ const initPage = Page => {
         </main>
       </Provider>
     );
+  };
+
+  PageComponent.propTypes = {
+    helloMessage: PropTypes.string,
+    isServer: PropTypes.bool,
   };
 
   PageComponent.getInitialProps = ({ req }) => {

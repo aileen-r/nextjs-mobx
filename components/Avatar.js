@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
+import { shape, func } from 'prop-types';
 
 const imgStyles = {
   display: 'block',
   marginTop: 15,
-}
+};
 
 const Avatar = ({ AuthStore }) => {
   const user = AuthStore && AuthStore.user;
@@ -13,7 +14,7 @@ const Avatar = ({ AuthStore }) => {
   const signOut = AuthStore && AuthStore.signOut;
   return (
     <div>
-      {user ? <img src={photoUrl} style={imgStyles}/> : null}
+      {user ? <img src={photoUrl} style={imgStyles} /> : null}
       {user ? (
         <button onClick={() => signOut()}>Logout</button>
       ) : (
@@ -21,6 +22,14 @@ const Avatar = ({ AuthStore }) => {
       )}
     </div>
   );
+};
+
+Avatar.propTypes = {
+  AuthStore: shape({
+    user: shape({}),
+    signInWithGoogle: func,
+    signOut: func,
+  }),
 };
 
 export default inject('AuthStore')(observer(Avatar));

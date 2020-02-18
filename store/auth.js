@@ -14,25 +14,11 @@ class Store {
 
   signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth
-      .signInWithPopup(provider)
-      .then(function(result) {
-        // console.log(result);
-      })
-      .catch(function(error) {
-        // const errorMessage = error.message;
-      });
+    auth.signInWithPopup(provider).catch(err => console.error(err));
   };
 
   signOut = () => {
-    auth.signOut().then(
-      function() {
-        // Sign-out successful.
-      },
-      function(error) {
-        // An error happened.
-      }
-    );
+    auth.signOut().catch(err => console.error(err));
   };
 }
 

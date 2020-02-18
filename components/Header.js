@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import Avatar from './Avatar';
 
@@ -15,7 +16,7 @@ const Header = () => (
         <a style={linkStyle}>About</a>
       </Link>
     </nav>
-    <Avatar/>
+    <Avatar />
   </header>
 );
 

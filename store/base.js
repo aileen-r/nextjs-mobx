@@ -3,7 +3,7 @@ import { action, observable } from 'mobx';
 const messages = [
   'Hello World 👋',
   'Learning some Next 👩‍💻',
-  'Running Next since we don\'t have access to FITT yet 🤷‍♀️',
+  "Running Next since we don't have access to FITT yet 🤷‍♀️",
   'Is it Friday yet? 🍷',
 ];
 
@@ -14,14 +14,12 @@ class Store {
 
   constructor(isServer, message) {
     // set message or generate message if no message is there yet)
-    this.helloMessage = message
-      ? message
-      : messages[Math.floor(Math.random() * (messages.length))];
+    this.helloMessage = message ? message : messages[Math.floor(Math.random() * messages.length)];
   }
 
   @action start = () => {
     this.timer = setInterval(() => {
-      this.helloMessage = messages[Math.floor(Math.random() * (messages.length))];
+      this.helloMessage = messages[Math.floor(Math.random() * messages.length)];
     }, 10000);
   };
 

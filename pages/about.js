@@ -1,3 +1,4 @@
+import React from 'react';
 import initPage from '~/utils/initPage';
 
 const About = () => {
